@@ -13,7 +13,7 @@ class EventBookingSystem:
 
     def get_event(self, event_id: int) -> dict | None:
         pass
-
+########
 
 class EventBookingSystemImpl(EventBookingSystem):
 
@@ -104,13 +104,12 @@ class EventBookingSystemImpl(EventBookingSystem):
         bookings_by_event = []
 
         for booking in self.bookings:
-            for event in self.events:
-                if booking['event_id'] == event['event_id'] and booking['status'] == 'active':
-                    bookings_by_event.append(booking)
+            if booking['event_id'] == event_id and booking['status'] == 'active':
+                bookings_by_event.append(booking)
 
-        bookings_by_event.sort(key = lambda bookings_by_event: bookings_by_event['booking_id'])
-        
-        return bookings_by_event                
+        bookings_by_event.sort(key=lambda booking: booking['booking_id'])
+
+        return bookings_by_event            
         
 
     def get_event_occupancy(self, event_id: int) -> float:
